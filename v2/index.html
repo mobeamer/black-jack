@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="IE=Edge">
+        <meta name="viewport" content="width=device-width, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes"> 
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' http://localhost:1337">        
+        
+        <title>-----</title>
+        
+        <link rel='manifest' href='manifest.json'>
+
+        <link rel="stylesheet" href="css/skin-dark.css"/>
+
+        <script src="js/beamer-lib-v-1.1.1/utils/gui.class.js" type="text/javascript"></script>
+        <script src="js/beamer-lib-v-1.1.1/utils/assets.class.js" type="text/javascript"></script>
+        <script src="js/beamer-lib-v-1.1.1/utils/renderLoop.js" type="text/javascript"></script>        
+        <script src="js/beamer-lib-v-1.1.1/utils/bind-inputs.js" type="text/javascript"></script>
+
+        <script src="js/beamer-lib-v-1.1.1/engine/game-user.class.js" type="text/javascript"></script>
+        <script src="js/beamer-lib-v-1.1.1/engine/game-engine.class.js" type="text/javascript"></script>
+        <script src="js/beamer-lib-v-1.1.1/engine/game-entity.class.js" type="text/javascript"></script>
+        <script src="js/beamer-lib-v-1.1.1/engine/game-tile.class.js" type="text/javascript"></script>
+        <script src="js/beamer-lib-v-1.1.1/engine/game-position.class.js" type="text/javascript"></script>
+        <script src="js/beamer-lib-v-1.1.1/engine/game-sprite-sheet.class.js" type="text/javascript"></script>
+        <script src="js/beamer-lib-v-1.1.1/engine/game-data.class.js" type="text/javascript"></script>
+        
+        <script src="js/games/simple-game.js" type="text/javascript"></script>
+     
+        <style>
+
+
+            .div-blackjack-card 
+            {
+                border: 0px solid white;
+                display:inline-block;
+            }
+
+            .div-blackjack-card, .card-img 
+            {
+                width:75px;
+                height:125px;            
+            }
+
+            .card-count
+            {
+                width:80%;margin:10%;font-size: 36px;font-weight: bold;text-align:center;
+            }
+
+        </style>
+    </head>
+    <body>
+
+        <!-----------------------{Panels and Popups}------------------------->
+        
+    
+        <div id="div-logo-panel" class="">
+            Game Logo...
+        </div>
+
+        
+        <div id="div-game-objs">
+        </div>
+
+        
+        <div id="div-menu-wrapper">
+            <div id="menu-contents" style="position: fixed; right:0px; width: 150px;"></div>
+        </div>
+
+
+
+
+
+        <div id="div-popup" class="popup panel floater">
+            <div id="div-popup-header" class="panel-header">This is a popup</div>
+            <div id="div-popup-contents" class="panel-contents">This is a popup</div>
+            <div id="div-popup-footer" class="panel-footer">
+                    <a  class=button-link href="javascript: gui.closePopups()"><img src="img/gui-x-icon.png" style="width:64px;height:64px;"></a>
+            </div>
+        </div>
+
+        <div id="div-pop-msg" class="growler">
+            This is a single line message
+        </div>
+
+
+
+        <div id="div-long-msg" onclick="gui.closeLongMsg();"
+                                style="visibility:hidden;width:100%;height:25px;
+                            position:absolute;top:85px;left:0px;font-size:10px;
+                            background: #ddd;
+                            border-top: 1px solid white;
+                            border-bottom: 1px solid white;
+                            color: black;
+                            text-align: center;
+                            padding-top: 20px;
+                            font-style: italic;">
+            Messages
+        </div>
+
+
+
+
+
+        <div id="div-debug" style="visibility:hidden; position:absolute;top:0px;left:0px;font-size:10px;border:1px solid red;">
+            Debugger
+        </div>
+
+
+
+
+        <!-----------------------{Views}------------------------->
+
+
+
+        <div class="view view-wrapper" id="viewLoading">
+            <img src="img/gui-loader.gif">
+            <br>Loading...
+            <div id="div-loading-msg" style="font-size: 10px;font-style: italic;"></div>
+        </div>
+
+
+        <div class="view view-wrapper" id="view-black-jack">
+            <div id="div-user-name">Guest</div>
+            <div id="div-money">$9999.00</div>
+            <div id="div-bet-amt">$10.00</div>
+
+            <div id="div-dealer-cards" style="width:80%;margin:10%;height:150px;text-align: center;">
+                Dealer<p>
+                    <div id="div-dealer-card-holder"></div>
+            </div>
+            
+            <div id="div-dealer-hand-val" class="card-count">
+                ---
+            </div>
+
+            <div id="div-dealer-cards" style="width:80%;margin:10%;text-align: center;">
+                Your Cards<P>
+                <div id="div-player-card-holder"></div>
+            </div>
+
+            <div id="div-player-hand-val" class="card-count">
+                ---
+            </div>
+
+
+            <div id="div-hand-results" class="card-count">
+                ---
+            </div>
+
+
+        </div>
+
+
+
+
+        <div class="view view-wrapper" id="viewGameCanvas" style="position:absolute;top:0px;left:0px;">
+            <canvas class="gameCanvas" id="mainGameCanvas" style="border:5px solid green;"></canvas>
+        </div>
+        
+
+        <div class="footer">
+           
+            <div class="footer-card-left">&nbsp</div>
+                <div id="footer-cards" style="display:inline">                    
+                </div>
+            <div class="footer-card-right" >&nbsp</div>    
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            //
+            //dont change variable names, these are globally used
+            //
+            var user = new User();
+            var gui = new Gui();
+            var assets = new Assets();
+            var data = new Data();
+            var play = "";
+            var gameEngine = new GameEngine();
+        
+            window.onload = function() {
+
+                debug("Starting....");
+
+                startApp();
+                
+                window.addEventListener('resize', resizeAll);
+
+                resizeAll();
+
+                return;
+                
+            };
+
+            function startApp()
+            {
+                debug("Starting App");
+
+                gui = new Gui();
+
+                gui.showView("viewLoading");
+                
+                gui.setLoadingMsg("looking for user info...");
+                
+                user.init({});
+                
+                gui.setLoadingMsg("gui done loading...");
+
+                play = new BlackJackGame();
+
+                play.initialize();
+
+            }
+
+            function resizeAll()
+            {
+                //nothing to do here
+            }
+
+            function debug(msg)
+            {
+                console.log(msg);
+            }
+
+
+                    
+        </script>
+    </body>
+</html>
