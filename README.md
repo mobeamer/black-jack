@@ -16,13 +16,53 @@ Time: 1 hour
 
 http://www.beamerlabs.com/lab/black-jack/v2/
 
-Realized that I didn't center the app. Which lead to revamping the cards so that they could be dynamic. Can now add as many cards as I want per hand.
+Realized that I didn't center the app. Which lead to revamping the cards so that they could be dynamic. 
 
-Started to think about splitting stuff...an interesting problem. 
+Can now add as many cards as I want per hand.
+
+Started to think about splitting hands...it an interesting coding problem... 
 
 Technically it's like giving a player multiple hands. 
 
-I only coded this up to have one hand per player.
+I only coded this up to have one hand per player. Ooops. They call that re-engineering.
+
+
+
+# Iteration 3:
+Time: 30 min
+
+http://www.beamerlabs.com/lab/black-jack/v3/
+
+Added some padding to the cards
+
+Noticed that you can raise the bet while you see the cards
+
+Raise and lower bet buttons only visible at the end of a hand
+
+You can't hit any more on Blackjack
+
+Black Jack pays automatically
+
+Can double down
+
+
+
+# Iteration 4:
+Time: 3 hours
+
+http://www.beamerlabs.com/lab/black-jack/v4/
+
+Added a player class
+
+Which allowed me to do multiple players (not multi-player)
+
+Things got really wierd with the game state.
+
+Next up, create an API for it
+
+I did not release this to the final site, as it's a little clunky. Stay tuned.
+
+
 
 
 
