@@ -48,19 +48,6 @@ function BlackJackGame()
 
         this.shuffle(this.deck);
 
-        /*
-        All Aces
-        
-        this.deck[0] = {"cardFace": "A",  "cardClass":cardClass, "cardVal": 11, "imgPath": "img/tiles/cards/A" + cardClass + ".png", "location":"deck"};;
-        this.deck[1] = {"cardFace": "A",  "cardClass":cardClass, "cardVal": 11, "imgPath": "img/tiles/cards/A" + cardClass + ".png", "location":"deck"};;
-        this.deck[2] = {"cardFace": "A",  "cardClass":cardClass, "cardVal": 11, "imgPath": "img/tiles/cards/A" + cardClass + ".png", "location":"deck"};;
-        this.deck[3] = {"cardFace": "A",  "cardClass":cardClass, "cardVal": 11, "imgPath": "img/tiles/cards/A" + cardClass + ".png", "location":"deck"};;
-        this.deck[4] = {"cardFace": "A",  "cardClass":cardClass, "cardVal": 11, "imgPath": "img/tiles/cards/A" + cardClass + ".png", "location":"deck"};;
-        this.deck[5] = {"cardFace": "A",  "cardClass":cardClass, "cardVal": 11, "imgPath": "img/tiles/cards/A" + cardClass + ".png", "location":"deck"};;
-        */
-
-
-
         this.startNextHand();
         
         this.updateDisplay();
@@ -75,14 +62,18 @@ function BlackJackGame()
             this.deck[i].location = "discard";
         }
 
+        for(var i=0;i<5;i++)
+        {
+            document.getElementById("div-player-card-" + i).innerHTML = "";
+            document.getElementById("div-dealer-card-" + i).innerHTML = "";
+        }
+
         this.showDealerHand = false;
         this.moneyResult = "";
         this.gameState = "playing";
 
         document.getElementById("div-dealer-hand-val").innerHTML = "";
         document.getElementById("div-player-hand-val").innerHTML = "";
-        document.getElementById("div-dealer-card-holder").innerHTML = "";
-        document.getElementById("div-player-card-holder").innerHTML = "";
         gui.hideGrowl();
     }
 
@@ -231,34 +222,12 @@ function BlackJackGame()
     this.getPlayerTotal = function(playerID)
     {
         var total = 0;
-        var numAces = 0;
 
         for(var i=0;i<this.deck.length;i++)
         {
             if(this.deck[i].location == playerID)
             {
                 total+=this.deck[i].cardVal;
-
-                if(this.deck[i].cardFace == "A")
-                {
-                    numAces++;
-                }
-
-
-            }
-        }
-       
-        if(total > 21 && numAces > 0)
-        {
-            for(var i=0;i<numAces;i++)
-            {
-                total-=10;
-                if(this.debug) console.log("Ace is 1");
-
-                if(total <= 21)
-                {
-                    break;
-                }
             }
         }
 
@@ -303,13 +272,11 @@ function BlackJackGame()
     
         document.getElementById("div-player-hand-val").innerHTML = this.getPlayerTotal("player");
 
-        var d = document.getElementById("div-player-card-holder");
-
-        d.innerHTML = "";
-
         for(var i=0;i<playerHand.length;i++)
         {
-            d.innerHTML+= "<div id='div-player-card-" + i + "' class='div-blackjack-card'><img src='" + playerHand[i].imgPath + "' class='card-img'></div>";
+            var d = document.getElementById("div-player-card-" + i);
+            
+            d.innerHTML = "<img src='" + playerHand[i].imgPath + "' class='card-img'>";
         }
     }
 
@@ -320,12 +287,11 @@ function BlackJackGame()
         if(this.debug) console.log("dealerHand",dealerHand);
         var dealerSum = 0;
 
-        var d = document.getElementById("div-dealer-card-holder");  
-        d.innerHTML = "";
-
+        var d = document.getElementById("div-dealer-card-0");
+        
         if(!this.showDealerHand)
         {
-            d.innerHTML = "<div id='div-dealer-card-0' class='div-blackjack-card'><img src='img/tiles/cards/gray_back.png' class='card-img'></div>";
+            d.innerHTML = "<img src='img/tiles/cards/gray_back.png' class='card-img'>";
             
         }
         else
@@ -337,16 +303,16 @@ function BlackJackGame()
 
         for(var i=0;i<dealerHand.length;i++)
         {
-            var d = document.getElementById("div-dealer-card-holder");
+            var d = document.getElementById("div-dealer-card-" + i);
             
             if(this.showDealerHand && i == 0)
             {
-                d.innerHTML+= "<div id='div-dealer-card-0' class='div-blackjack-card'><img src='" + dealerHand[i].imgPath + "' class='card-img'></div>";
+                d.innerHTML = "<img src='" + dealerHand[i].imgPath + "' class='card-img'>";
             }
             
             if(i > 0)
             {
-                d.innerHTML+= "<div id='div-dealer-card-" + i + "' class='div-blackjack-card'><img src='" + dealerHand[i].imgPath + "' class='card-img'></div>";
+                d.innerHTML = "<img src='" + dealerHand[i].imgPath + "' class='card-img'>";
             }
 
             dealerSum+= dealerHand[i].cardVal;
