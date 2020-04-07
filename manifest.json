@@ -1,0 +1,6 @@
+{
+	"name" : "Template Mobile Game",
+	"short_name" : "Simple Game Template",
+	"description" : "Just a simple game",
+	"start_url" : "index.html"
+}
