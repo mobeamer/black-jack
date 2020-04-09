@@ -41,8 +41,8 @@
 
             .div-blackjack-card, .card-img 
             {
-                width:75px;
-                height:100px;            
+                width:100px;
+                height:150px;            
             }
 
             .div-blackjack-card-small
@@ -60,7 +60,7 @@
 
             .card-count
             {
-               font-size: 36px;font-weight: bold;text-align:center;
+                width:80%;margin:10%;font-size: 36px;font-weight: bold;text-align:center;
             }
 
         </style>
@@ -137,23 +137,11 @@
 
 
         <div class="view view-wrapper" id="view-black-jack">
-            <table style="width:100%;padding:10px;">
-                <tr>
-                    <td>&nbsp;</td>
-                    <td style="text-align:right;">Bank</td>
-                    <td style="text-align:right;">Betting</td>
-                </tr>
-                <tr>
-                    <td><div id="div-user-name">Guest</div></td>
-                    <td style="text-align:right;"><div id="div-money">$9999.00</div></td>
-                    <td style="text-align:right;"><div id="div-bet-amt">$10.00</div></td>
-                </tr>
-            </table>
-            
-            
-            
+            <div id="div-user-name">Guest</div>
+            <div id="div-money">$9999.00</div>
+            <div id="div-bet-amt">$10.00</div>
 
-            <div id="div-dealer-cards" style="height:150px;text-align: center;">
+            <div id="div-dealer-cards" style="width:80%;margin:10%;height:150px;text-align: center;">
                 Dealer<p>
                     <div id="div-dealer-card-holder"></div>
             </div>
@@ -162,12 +150,14 @@
                 
             </div>
 
-            <div id="div-dealer-cards" style="text-align: center;">
+            <div id="div-dealer-cards" style="width:80%;margin:10%;text-align: center;">
                 Your Cards<P>
                 <div id="div-player-card-holder"></div>
             </div>
 
-            <div id="div-player-hand-val" class="card-count"></div>
+            <div id="div-player-hand-val" class="card-count">
+                
+            </div>
 
 
             <div id="div-hand-results" class="card-count">
@@ -186,8 +176,11 @@
         
 
         <div class="footer">
-                <div class="footer-card-left">&nbsp</div>
-                <div id="footer-cards" style="display:inline"></div>  
+           
+            <div class="footer-card-left">&nbsp</div>
+                <div id="footer-cards" style="display:inline">                    
+                </div>
+            <div class="footer-card-right" >&nbsp</div>    
         </div>
 
 

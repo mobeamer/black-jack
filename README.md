@@ -82,6 +82,18 @@ http://www.beamerlabs.com/lab/black-jack/v6/
 Recap: Figured out how to easily do hand splitting. It's a bit hacky to me but it's working.
 
 
+# Iteration 7:
+Time:  hours
+
+http://www.beamerlabs.com/lab/black-jack/v7/
+
+Recap: (30 min) Clean up time, making sure it "fits" on a mobile device.
+
+Also realized that the deck has to be re-shuffled between hands.
+
+
+
+
 
 
 

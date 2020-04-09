@@ -1,0 +1,21 @@
+{
+  "statements": [
+    {
+      "source": {
+        "web": {
+          "site": "https://www.beamerlabs.com/lab/black-jack/v6"
+        }
+      },
+      "relation": "delegate_permission/common.handle_all_urls",
+      "target": {
+        "androidApp": {
+          "packageName": "apps.beamerlabs.com",
+          "certificate": {
+            "sha256Fingerprint": "BF:BC:40:36:A0:BC:1F:0A:FE:E3:51:63:10:AC:E7:F1:96:DC:BB:28:E5:70:4E:E2:64:EA:CC:4A:B9:A3:B3:3E"
+          }
+        }
+      }
+    }
+  ],
+  "maxAge": "599.998704399s"
+}
