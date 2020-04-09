@@ -3,7 +3,7 @@
     xmlns:gap   = "http://phonegap.com/ns/1.0"
     id          = "blackjack.beamerlabs.com"
     versionCode = "10"
-    version     = "2020.04.01" >
+    version     = "2020.04.09" >
 
   <name>Black Jack Game</name>
 
