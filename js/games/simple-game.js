@@ -48,11 +48,11 @@ function BlackJackGame()
         this.shuffle(this.deck);
 
         
-        //Double Down
-        this.deck[1] = {"cardFace": "9",  "cardClass":'C', "cardVal": 9, "imgPath": "img/tiles/cards/9C.png", "location":"deck", "splitHand": 0};
-        this.deck[3] = {"cardFace": "9",  "cardClass":'S', "cardVal": 9, "imgPath": "img/tiles/cards/9S.png", "location":"deck", "splitHand": 0};
-        this.deck[4] = {"cardFace": "9",  "cardClass":'S', "cardVal": 9, "imgPath": "img/tiles/cards/9S.png", "location":"deck", "splitHand": 0};
-        this.deck[5] = {"cardFace": "9",  "cardClass":'S', "cardVal": 9, "imgPath": "img/tiles/cards/9S.png", "location":"deck", "splitHand": 0};
+        //Test: Double Down
+        //this.deck[1] = {"cardFace": "9",  "cardClass":'C', "cardVal": 9, "imgPath": "img/tiles/cards/9C.png", "location":"deck", "splitHand": 0};
+        //this.deck[3] = {"cardFace": "9",  "cardClass":'S', "cardVal": 9, "imgPath": "img/tiles/cards/9S.png", "location":"deck", "splitHand": 0};
+        //this.deck[4] = {"cardFace": "9",  "cardClass":'S', "cardVal": 9, "imgPath": "img/tiles/cards/9S.png", "location":"deck", "splitHand": 0};
+        //this.deck[5] = {"cardFace": "9",  "cardClass":'S', "cardVal": 9, "imgPath": "img/tiles/cards/9S.png", "location":"deck", "splitHand": 0};
         //this.startNextHand();
         //this.playerSplit();
         //play.playerHit();
