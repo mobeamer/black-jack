@@ -6,7 +6,7 @@ I thought I'd capture the development cycles.
 # Iteration 1:
 Time: 10 to 12 hours
 
-http://www.beamerlabs.com/lab/black-jack/v1/
+(Removed) http://www.beamerlabs.com/lab/black-jack/v1/
 
 First iteration. Got the basics working, game doesn't support a lot of common black jack features. But it adds shit up! lol. And keeps track of the score.
 
@@ -14,7 +14,7 @@ First iteration. Got the basics working, game doesn't support a lot of common bl
 # Iteration 2:
 Time: 1 hour
 
-http://www.beamerlabs.com/lab/black-jack/v2/
+(Removed) http://www.beamerlabs.com/lab/black-jack/v2/
 
 Realized that I didn't center the app. Which lead to revamping the cards so that they could be dynamic. 
 
@@ -50,7 +50,7 @@ Can double down
 # Iteration 4:
 Time: 3 hours
 
-http://www.beamerlabs.com/lab/black-jack/v4/
+(Removed) http://www.beamerlabs.com/lab/black-jack/v4/
 
 Added a player class
 
