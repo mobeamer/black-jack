@@ -37,6 +37,40 @@ function BlackJackGame()
 
         this.play();
 
+        //testing
+        //play.startDealing();
+        //play.playerStand(1);
+
+        //Testing Split
+        //this.deck.placeCard("7","C",7, 1);
+        //this.deck.placeCard("7","S",7, 3);
+        //play.startDealing();
+
+        //console.log("Stacked Deck", this.deck.deck);
+        //this.startBetting();
+        //this.updateCurrPlayerState('ready');
+        //this.gotoNextPlayer();
+        //this.playerSplit();
+        //this.updateDisplay();
+        
+        
+        //Testing Double Down - 2
+        //this.deck[1] = {"cardFace": "7",  "cardClass":'C', "cardVal": 7, "imgPath": "img/tiles/cards/7C.png", "location":"deck"};
+        //this.deck[3] = {"cardFace": "4",  "cardClass":'S', "cardVal": 4, "imgPath": "img/tiles/cards/4S.png", "location":"deck"};
+        //this.startBetting();
+        //this.updateCurrPlayerState('ready');
+        //this.gotoNextPlayer();
+        //this.updateDisplay();
+
+        //testing multiple players
+        //play.addPlayer();
+        //this.startBetting();
+        //play.updateCurrPlayerState('ready');
+        //play.gotoNextPlayer();
+        //play.updateCurrPlayerState('ready');
+        //play.gotoNextPlayer();
+        
+
         this.updateDisplay();
 
 
@@ -64,24 +98,135 @@ function BlackJackGame()
         if(this.gameState == "drawing")
         {
             this.dealInitialHands();
-            this.setAllPlayersState("waiting");
-            this.players[this.currentPlayerIdx].playerState = "drawing";
-            this.gameState = "player-drawing";
-        }
-
-        if(this.gameState == "player-drawing")
-        {
-            var waiting = this.gotoNextHandOfCurrentPlayer();
-            
-            if(!waiting) this.gotoNextPlayer();
-
-            this.players[this.currentPlayerIdx].playerState = "drawing";
+            this.setAllPlayersState("drawing");
         }
 
         this.updateDisplay();
 
 
         return;
+        
+        if(this.gameState == "betting")
+        {
+            this.updateDisplay();
+        }
+
+
+        if(this.gameState == "dealing")
+        {
+           
+            this.dealNextCardTo("dealer", 0); 
+
+            //first card
+            for(var i=0;i<this.players.length;i++)
+            {
+                this.dealNextCardTo(this.players[i].playerID, 0);
+            }
+
+            this.dealNextCardTo("dealer", 0); 
+
+            //second card
+            for(var i=0;i<this.players.length;i++)
+            {
+                this.dealNextCardTo(this.players[i].playerID,0);
+            }            
+            
+            this.gameState = "drawing";
+  
+            this.updateDisplay();
+            
+            return;
+        }
+
+        
+        if(this.gameState == "drawing")
+        {
+            var handIdx = this.players[this.currentPlayerIdx].currHandIdx;
+            var playerHands = this.getPlayerHand(this.players[this.currentPlayerIdx].playerID);            
+            var playerHand = playerHands[handIdx];
+            var playerSum = this.getHandTotal(playerHand);
+            
+            if(playerSum > 21)
+            {
+                this.players[this.currentPlayerIdx].handMsg[handIdx] = "You Busted!!!!";
+                this.players[this.currentPlayerIdx].handStatus[handIdx] = "hand-over";
+
+                waitingOnInput = this.gotoNextHandOfCurrentPlayer();
+            
+                if(!waitingOnInput) 
+                {
+                    this.players[this.currentPlayerIdx].playerState = "waiting";
+                    
+                    waitingOnInput = this.gotoNextPlayer();
+                    
+                }
+
+                if(!waitingOnInput) 
+                {
+                    this.gameState = "dealer";
+                    this.play();
+                    //waitingOnInput = this.dealToDealer();
+                }
+
+            }
+                
+            this.updateDisplay();
+
+            return;
+            
+        }
+
+
+
+
+        if(this.gameState == "drawing")
+        {
+            var waitingOnInput = false;
+            
+            waitingOnInput = this.gotoNextHandOfCurrentPlayer();
+            
+            if(!waitingOnInput) waitingOnInput = this.gotoNextPlayer();
+
+            //if(!waitingOnInput) waitingOnInput = this.gotoNextPlayer();
+
+            this.gameState = "dealer";
+            
+            this.dealToDealer();
+
+            this.updateDisplay();
+
+            return;
+            
+        }
+
+        if(this.gameState == "dealer")
+        {
+            this.dealToDealer();
+            
+            this.calculateResults();
+            
+            this.updateDisplay();
+            
+            return;
+        }
+
+        this.updateDisplay();
+
+
+    }
+
+
+
+
+    this.startDealing = function()
+    {
+        this.gameState = "dealing";
+
+        this.setAllPlayersState("playing");
+
+        this.play();
+
+        this.updateDisplay();
     }
 
     this.setAllPlayersState = function(s)
@@ -103,6 +248,45 @@ function BlackJackGame()
         
     }
 
+
+    this.arrangeUi = function()
+    {
+        var seatWidth = Math.floor(window.innerWidth/this.numSeats) - 25;
+        var seatHeight = 250;
+
+        var d = document.getElementById("div-seat-wrapper");
+        var html = "";
+
+        for(var i=0;i<this.numSeats;i++)
+        {
+            html+= "<div id='div-seat-" + i + "' class='div-hand-wrapper' style='border:1px solid white;display:inline-block;width:" + seatWidth + "px; height:" + seatHeight + "px;'></div>";
+        }
+        
+        d.innerHTML = html;
+
+    }
+
+    this.buildDeck = function()
+    {
+        if(this.debug) console.log("Building Deck...");
+        
+        this.deck = new Deck();
+
+        this.deck.buildDeck();
+    }
+
+    this.addPlayer = function(seatID)
+    {
+        var playerName = "guest-" + (this.players.length+1);
+
+        var playerID = this.players.length+1;
+
+        var p = new Player(playerName, playerID, seatID);
+
+        this.players.push(p);
+        
+        if(this.debug) console.log("play.addPlayer(): completed");
+    }
 
     
     this.updateDisplay = function()
@@ -195,8 +379,6 @@ function BlackJackGame()
     this.dealInitialHands = function()
     {
         //first card
-        this.dealNextCardTo("dealer", 0); 
-        
         for(var i=0;i<this.players.length;i++)
         {
             this.dealNextCardTo(this.players[i].playerID, 0);
@@ -506,47 +688,6 @@ function BlackJackGame()
         return total;
     }
 
-
-    
-
-    this.arrangeUi = function()
-    {
-        var seatWidth = Math.floor(window.innerWidth/this.numSeats) - 25;
-        var seatHeight = 250;
-
-        var d = document.getElementById("div-seat-wrapper");
-        var html = "";
-
-        for(var i=0;i<this.numSeats;i++)
-        {
-            html+= "<div id='div-seat-" + i + "' class='div-hand-wrapper' style='border:1px solid white;display:inline-block;width:" + seatWidth + "px; height:" + seatHeight + "px;'></div>";
-        }
-        
-        d.innerHTML = html;
-
-    }
-
-    this.buildDeck = function()
-    {
-        if(this.debug) console.log("Building Deck...");
-        
-        this.deck = new Deck();
-
-        this.deck.buildDeck();
-    }
-
-    this.addPlayer = function(seatID)
-    {
-        var playerName = "guest-" + (this.players.length+1);
-
-        var playerID = this.players.length+1;
-
-        var p = new Player(playerName, playerID, seatID);
-
-        this.players.push(p);
-        
-        if(this.debug) console.log("play.addPlayer(): completed");
-    }
 
 
 

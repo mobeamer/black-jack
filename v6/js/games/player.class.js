@@ -1,14 +1,14 @@
-function Hand(handID)
+function Player()
 { 
-    this.cards = []; 
-    this.handID = handID;
-    this.playerID = "";
-
+    this.hand = [];    
     this.debug = true;
- 
-    this.assignToPlayer = function(playerID)
+    this.showHand = false;
+    this.betAmt = 10;
+    this.playerBank = 100;
+
+    this.initialize = function(options)
     {
-        this.playerID = playerID;
+
     }
 
     this.giveCard = function(card)

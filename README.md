@@ -62,6 +62,29 @@ Next up, create an API for it
 
 I did not release this to the final site, as it's a little clunky. Stay tuned.
 
+# Iteration 5:
+Time: 4 hours
+
+http://www.beamerlabs.com/lab/black-jack/v5/
+
+Recap: 4 hours of wasted time. ugh
+
+Completly wrapped myself around my axel. I got caught up with trying to make multiplayer work. Then I got fascincated with playing multiple hands. Which lead to all kind of codding loops. Finally looked up from call back hell and realized that I was taking on too much. 
+
+Went back to Interation 3 and started over...sometimes you have to take a step back and reset.
+
+
+# Iteration 6:
+Time: 2 hours
+
+http://www.beamerlabs.com/lab/black-jack/v6/
+
+Recap: Figured out how to easily do hand splitting. It's a bit hacky to me but it's working.
+
+
+
+
+
 
 
 

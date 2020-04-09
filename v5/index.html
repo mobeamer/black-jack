@@ -28,6 +28,7 @@
         <script src="js/beamer-lib-v-1.1.1/engine/game-data.class.js" type="text/javascript"></script>
         
         <script src="js/games/simple-game.js" type="text/javascript"></script>
+        <script src="js/games/deck.class.js" type="text/javascript"></script>
         <script src="js/games/player.class.js" type="text/javascript"></script>
         <script src="js/games/hand.class.js" type="text/javascript"></script>
      
@@ -159,19 +160,12 @@
                     <div id="div-dealer-card-holder"></div>
             </div>
             
-            <div id="div-dealer-hand-val" class="card-count">
-                
+            <div id="div-dealer-hand-val" class="card-count"></div>
+
+            <div id="div-seat-wrapper" style="text-align:center;">
+
             </div>
-
-            <div class="div-hand-wrapper">
-                <div id="div-current-player-hand"></div>
-            </div>
-
-            <div id="div-player-mini-hands" style="background: #BBBBBB;">
-               
-            </div>
-
-
+            
         </div>
 
 
@@ -205,6 +199,24 @@
 
         <div id="templates" class="hidden">
 
+            
+            <div id="template-player-seat">
+                <div style="text-align:center;display:inline-block;">
+                    [ID] Cards
+                    <br>
+                    [CARDS]
+                    <br>Betting: [BET_AMT]
+                    <br>Bank: [BANK]
+                    <div class="card-count">[TOTAL]</div>
+                    [MSG]
+                    <hr>
+                    [BUTTONS]
+                    <br>[STATE]
+                </div>
+                   
+            </div>
+
+
             <div id="template-mini-player-hand">
                 <div style="width:250px;text-align:center;display:inline-block;">
                     [ID]
@@ -214,6 +226,7 @@
                     <br>Bank: [BANK]
                     <div class="card-count-small">[TOTAL]</div>
                     [MSG]
+                    
                 </div>
                    
             </div>
