@@ -3,12 +3,12 @@
     xmlns:gap   = "http://phonegap.com/ns/1.0"
     id          = "blackjack.beamerlabs.com"
     versionCode = "10"
-    version     = "1.0.0" >
+    version     = "2020.04.01" >
 
   <name>Black Jack Game</name>
 
   <preference name="android-minSdkVersion"  value="16" />
-  <preference name="android-targetSdkVersion"  value="26" />
+  <preference name="android-targetSdkVersion"  value="28" />
 
   <description>
       Just a simple blackjack game.
