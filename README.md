@@ -91,6 +91,13 @@ Recap: (30 min) Clean up time, making sure it "fits" on a mobile device.
 
 Also realized that the deck has to be re-shuffled between hands.
 
+(10 min) 
+Added config.xml file which helps phone-gap figure out some things.
+
+Went to build.phonegap.com, pointed it to github, asked it to build an apk
+
+
+
 
 
 

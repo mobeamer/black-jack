@@ -2,7 +2,7 @@ function BlackJackGame()
 { 
     this.deck = [];    
     this.topOfDeckIdx = 0;
-    this.debug = true;
+    this.debug = false;
     this.gameState = "";
     this.showDealerHand = false;
     this.defaultBetAmt = 10;
@@ -625,12 +625,26 @@ function BlackJackGame()
             
             if(this.showDealerHand && i == 0)
             {
-                d.innerHTML+= "<div id='div-dealer-card-0' class='div-blackjack-card'><img src='" + dealerHand[i].imgPath + "' class='card-img'></div>";
+                if(dealerHand.length <= 3)
+                {
+                    d.innerHTML+= "<div id='div-dealer-card-0' class='div-blackjack-card'><img src='" + dealerHand[i].imgPath + "' class='card-img'></div>";
+                }
+                else
+                {
+                    d.innerHTML+= "<div id='div-dealer-card-0' class='div-blackjack-card-small'><img src='" + dealerHand[i].imgPath + "' class='card-img-small'></div>";
+                }
             }
             
             if(i > 0)
             {
-                d.innerHTML+= "<div id='div-dealer-card-" + i + "' class='div-blackjack-card'><img src='" + dealerHand[i].imgPath + "' class='card-img'></div>";
+                if(dealerHand.length <= 3)
+                {
+                    d.innerHTML+= "<div id='div-dealer-card-" + i + "' class='div-blackjack-card'><img src='" + dealerHand[i].imgPath + "' class='card-img'></div>";
+                }
+                else
+                {
+                    d.innerHTML+= "<div id='div-dealer-card-" + i + "' class='div-blackjack-card-small'><img src='" + dealerHand[i].imgPath + "' class='card-img-small'></div>";
+                }
             }
 
             dealerSum+= dealerHand[i].cardVal;
@@ -780,8 +794,8 @@ function BlackJackGame()
                 gameMsg += " " + this.moneyResult + "" + this.betAmt;
             }
 
-            console.log("GameState:" + this.gameState);
-            console.log("MoneyResult:" + this.moneyResult);
+            if(this.debug) console.log("GameState:" + this.gameState);
+            if(this.debug) console.log("MoneyResult:" + this.moneyResult);
             if(gameMsg)
             {
                 gui.growl(gameMsg, 5);
