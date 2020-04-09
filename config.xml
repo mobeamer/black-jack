@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<widget xmlns   = "http://www.w3.org/ns/widgets"
+    xmlns:gap   = "http://phonegap.com/ns/1.0"
+    id          = "blackjack.beamerlabs.com"
+    versionCode = "10"
+    version     = "1.0.0" >
+
+  <name>Black Jack Game</name>
+
+  <description>
+      Just a simple blackjack game.
+  </description>
+
+  <author href="http://beamerlabes.com" email="support@phonegap.com">
+      Markus Beamer
+  </author>
+
+</widget>
