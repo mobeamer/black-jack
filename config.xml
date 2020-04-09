@@ -2,7 +2,7 @@
 <widget xmlns   = "http://www.w3.org/ns/widgets"
     xmlns:gap   = "http://phonegap.com/ns/1.0"
     id          = "blackjack.beamerlabs.com"
-    versionCode = "10"
+    versionCode = "20200409"
     version     = "2020.04.09" >
 
   <name>Black Jack Game</name>
